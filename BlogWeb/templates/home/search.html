@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Blogs - The Blogging website.{% endblock title %}
+
+
+{% block blogAct %}active{% endblock blogAct %}
+{% block body %}
+
+<main class="p-2">
+<div class="container">
+    <div class="p-5 my-4 bg-body-secondary rounded-3 shadow">
+        <div class="container-fluid py-2">
+          <!--If search results are available.-->
+          {% if find %}
+          <h1 class="display-6 fw-bold">Search results about "{{query|slice:"0:15"}}"</h1>
+          <p class="col-md-8 fs-6">There are some blogs that relate to your search request.</p>
+          {% endif %}
+
+          <!--If search results are not available.-->
+          {% if find == False %}
+          <h1 class="display-6 fw-bold">No searchs about "{{query|slice:"0:15"}}"!</h1>
+          <p class="col-md-8 fs-6">There is no Blogs relate to your search request!!</p>
+          <p class="col-md-8 fs-6">Thank you.</p>
+          {% endif %}
+          <a role="link" class="btn btn-dark btn-lg px-4" href="/blog/" type="button">Go back</a>
+        </div>
+      </div>
+</div>
+
+<div class="container">
+    <div class="row mb-2">
+        {% for post in posts %}
+    <div class="col-md-6 ">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">Author:{{post.author}}</strong>
+          <h3 class="mb-0">{{post.title}}</h3>
+          <div class="mb-1 text-body-secondary">{{post.timestamp}}</div>
+          <p class="card-text mb-auto">{{post.content|slice:"0:69"}}...</p>
+          <div>
+            <a href="/blog/{{post.sno}}/" role="button" target="_blank" class="my-2 icon-link gap-1 icon-link-hover btn btn-outline-dark">
+              Continue reading
+            </a>
+          </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img src='https://source.unsplash.com/collection/1906467/1600x900' alt="blog#{{forloop.counter}}" class="shadow-lg"  style="width: 230px; height:100%">
+        </div>
+      </div>
+    </div>
+        {% if forloop.counter|divisibleby:2 %}
+            </div>
+            <div class="row mb-2">
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+</main>
+{% endblock body %}

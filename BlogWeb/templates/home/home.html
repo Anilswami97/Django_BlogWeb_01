@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %}BlogWeb - The Blogging website.{% endblock title %}
+
+{% block css %}
+<style>
+    main{
+        padding : 1.2rem;
+    }
+    .home-content{
+        max-width : 42em;
+        margin: auto;
+        padding: 4rem 0 2rem 0;
+        height : 65vh;
+    }
+</style>
+{% endblock css %}
+
+{% block homeAct %}active{% endblock homeAct %}
+
+{% block body %}
+<main class="px-3 text-bg-dark">
+  <div class="home-content text-center">
+    <h1>Blog { Belonging logs }</h1>
+    <p class="lead">Blogs cover a wide range of topics, from personal experiences and daily musings to expert insights and professional advice. They can be used for various purposes, including personal journaling, creative expression, news and information sharing, product reviews, and even business marketing..</p>
+    <p class="lead">
+      <a href="about/" class="btn btn-md btn-outline-info fw-bold border-white">About</a>
+      <a href="blog/" class="btn btn-md btn-outline-info fw-bold border-white">Blogs</a>
+    </p>
+  </div>
+  <div class="container">
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-bg-dark border rounded-3">
+            <h2>Card #1</h2>
+            <p>Blogs come in various forms and on different topics, ranging from personal life to business and news. They allow people to establish a presence and build a community around their interests.</p>
+            <button class="btn btn-outline-light" type="button">Example button</button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="h-100 p-5 border rounded-3">
+            <h2>Card #2</h2>
+            <p>Blogs come in various forms and on different topics, ranging from personal life to business and news. They allow people to establish a presence and build a community around their interests.</p>
+            <button class="btn btn-outline-secondary" type="button">Example button</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-5">
+    <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">You have Wings, just need to see</h2>
+
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://source.unsplash.com/collection/190727/1600x900');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Clarity of Purpose</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>Earth</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>3d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://source.unsplash.com/collection/190727/1800x900');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Growth Mindset</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>India</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>4d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://source.unsplash.com/collection/190727/1400x900');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Courage.</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                  <small>California</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                  <small>5d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </main>
+{% endblock body %}

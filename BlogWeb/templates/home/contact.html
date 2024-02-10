@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Contact - The BlogWeb Website{% endblock title %}
+
+
+{% block contactAct %}active{% endblock contactAct %}
+{% block body %}
+<div class="container my-4">
+  <div class="p-5 my-4 bg-body-secondary rounded-3 shadow">
+    <h2 class="my-2">Contact us!</h2>
+    <form class="row g-3" method="post", action="/contact/" id="fcontact">
+        {% csrf_token %}
+        <div class="col-md-6">
+          <label for="name" class="form-label">Enter Your Name: </label>
+          <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+        </div>
+        <div class="col-md-6">
+          <label for="contactNo" class="form-label">Phone no.: </label>
+          <input type="tel" name="contact"class="form-control" id="contactNo" placeholder="Contact no.">
+        </div>
+        <div class="col-md-6">
+          <label for="emailId" class="form-label">Enter Email: </label>
+          <input type="email" name="email" class="form-control" id="emailId" placeholder="abc123@gmail.com">
+        </div>
+        <div class="col-md-6">
+          <label for="Epassword" class="form-label">Password: </label>
+          <input type="password" name="password"  class="form-control" id="Epassword">
+        </div>
+        <div class="col-12">
+          <label for="textField" class="form-label">Enter your message:</label>
+          <textarea name="message" id="textField" class="form-control border-2" cols="30" rows="5"></textarea>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </form>
+</div>
+</div>
+{% endblock body %}
+
+
+{% block script %}
+{% endblock script %}

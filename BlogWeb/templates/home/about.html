@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}About - The BlogWeb Website{% endblock title %}
+
+
+{% block aboutAct %}active{% endblock aboutAct %}
+
+{% block body %}
+<main>
+    <div class="container py-4">
+      <header class="pb-3 mb-4 border-bottom">
+          <span class="fs-4">Needs to feel, not repeat!</span>
+        </a>
+      </header>
+  
+      <div class="p-5 mb-4 bg-body-tertiary rounded-3 shadow-lg">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Attention Needed!</h1>
+          <p class="col-md-8 fs-4"><i>Of course</i>, this <b>Web-app</b> is not completed and needs improvements.</p>
+          <button class="btn btn-dark btn-lg" type="button">See Also below</button>
+        </div>
+      </div>
+  
+      <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+          <div class="h-100 p-5 text-bg-dark rounded-3 shadow-lg">
+            <h2>Used #1</h2>
+            <ul>
+                <li>Template Inheritance.</li>
+                <li>Dynamic urls, etc.</li>
+            </ul>
+            <button class="btn btn-outline-light" type="button">Example button</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-body-tertiary border rounded-3 shadow-lg">
+            <h2>Used #2</h2>
+            <ul>
+                <li>Used <i>sqlite.db</i> to blog's details.</li>
+                <li>Account creation.</li>
+                <li>Sign in, Login, Logout.</li>
+                <li>Data verification of forms, etc.</li>
+            </ul>
+            <button class="btn btn-outline-secondary" type="button">Example button</button>
+          </div>
+        </div>
+      </div>
+  
+      <footer class="pt-3 mt-4 text-body-secondary border-top">
+        &copy; 2024
+      </footer>
+    </div>
+  </main>
+{% endblock body %}

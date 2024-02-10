@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}BlogPost - The Blogging website.{% endblock title %}
+
+{% block css %}
+{% endblock css %}
+
+{% block blogAct %}active{% endblock blogAct %}
+
+{% block body %}
+{% load static %}
+{% load humanize %}
+{% load extras %}
+<main class="p-5">
+    <div class="container bg-body-secondary mt-3 py-4 px-4 rounded-3">
+        <div class="display-3 text-decoration-underline">{{post.title}}</div>
+        <div class="col-md-8 my-5">
+            <article class="blog-post">
+                <h2 class="display-6 link-body-emphasis mb-1">{{post.author}}'s blog post</h2>
+                <p class="blog-post-meta">Upload date. {{post.timestamp}}</p>
+                <p>{{post.content}}.</p>
+            </article>
+        </div>
+        <a href="" class="btn btn-outline-dark btn-lg fs-5">About author</a>
+    </div>
+    <div class="container my-4">
+        <div class="display-6 fw-bold my-5">Comments <small class="fw-normal">({{comments.count}})</small></div>
+        {% if user.is_authenticated %}
+        <form action="/blog/postComment/" class="form my-3" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control border-3" name='comment' id="comment"
+                    placeholder="write your comment here">
+                <input type="hidden" name='replySno' value="">
+            </div>
+            <input type="hidden" name='postSno' value="{{post.sno}}">
+            <button type="submit" class="btn btn-dark my-2">Comment</button>
+            <button type="reset" class="btn btn-outline-dark my-2">Discard</button>
+        </form>
+        {% else %}
+        <div class="display-6 mb-5">Please <a type="button" class="text-success mx-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">login</a> to Comment.</div>
+        {% endif %}
+
+        {% for comment in comments %}
+        <div class="row my-3 border shadow-sm ms-0 me-0">
+            <div class="col-md-1 p-3 d-flex justify-content-center align-items-center">
+                <img src="/static/img/user.png" class="rounded-circle mx-auto w-100 shadow bg-info"
+                    alt="user{{post.sno}}">
+            </div>
+            <div class="col-md-11 p-3"><b>{{comment.user.username}} </b><i> {{comment.timestamp | naturaltime}}</i>
+                <div>{{comment.Comment}}</div>
+                <div class="reply mt-3">
+                    {% if user.is_authenticated %}
+                    <button class="btn btn-sm btn-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample{{comment.sno}}" aria-expanded="false"
+                        aria-controls="collapseExample{{comment.sno}}">
+                        Reply
+                    </button>
+                    <button class="btn btn-sm btn-outline-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseReply{{comment.sno}}" aria-expanded="false"
+                        aria-controls="collapseReply{{comment.sno}}">
+                        Replies &#9660;
+                    </button>
+                    <div class="collapse my-2" id="collapseExample{{comment.sno}}">
+                        <div class="card card-body p-2">
+                            <form action="/blog/postComment/" class="form my-3" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-3" name='comment' id="reply"
+                                        placeholder="Reply">
+                                    <input type="hidden" name='replySno' value="{{comment.sno}}">
+                                </div>
+                                <input type="hidden" name='postSno' value="{{post.sno}}">
+                                <button type="submit" class="btn btn-sm btn-dark my-2">Comment</button>
+                                <button type="reset" class="btn btn-sm btn-outline-dark my-2">Discard</button>
+                            </form>
+                        </div>
+                    </div>
+                    {% else %}
+                    <button class="btn btn-sm btn-outline-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample{{comment.sno}}" aria-expanded="false"
+                        aria-controls="collapseExample{{comment.sno}}" title="Login Now">
+                        Reply
+                    </button>
+                    <button class="btn btn-sm btn-outline-dark" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseReply{{comment.sno}}" aria-expanded="false"
+                        aria-controls="collapseReply{{comment.sno}}">
+                        Replies &#9660;
+                    </button>
+                    {% endif %}
+                    <div class="collapse my-2" id="collapseReply{{comment.sno}}">
+                        <div class="replies mt-3">
+                            {% for reply in replyDict|get_val:comment.sno %}
+                            <div class="row my-1 border ms-0 me-0">
+                                <div class="col-md-1 p-3 d-flex justify-content-center align-items-center">
+                                    <img src="/static/img/user.png" class="rounded-circle mx-auto w-75 shadow bg-info"
+                                        alt="user{{post.sno}}">
+                                </div>
+                                <div class="col-md-11 p-2"><b>{{reply.user.username}} </b><i> {{reply.timestamp|naturaltime}}</i>
+                                    <div>{{reply.Comment}}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock body %}

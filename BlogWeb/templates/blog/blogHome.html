@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Blogs - The Blogging website.{% endblock title %}
+
+
+{% block blogAct %}active{% endblock blogAct %}
+{% block body %}
+
+<main class="p-2">
+<div class="container">
+    <div class="p-5 my-4 bg-body-secondary rounded-3 shadow">
+        <div class="container-fluid py-2">
+          <h1 class="display-6 fw-bold">Welcome to the Wings BlogPost</h1>
+          <p class="col-md-8 fs-6">We have a series of Blogs, you can create and write your blogs here, just like the one in previous versions of BlogWeb. Check out the blogs below for how you can remix and restyle, And make your connections.</p>
+          <a role="link" class="btn btn-dark btn-lg px-4" href="../" type="button">Home</a>
+        </div>
+      </div>
+</div>
+
+<div class="container">
+    <div class="row mb-2">
+        {% for blog in blogs %}
+    <div class="col-md-6 ">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">Author:{{blog.author}}</strong>
+          <h3 class="mb-0">{{blog.title}}</h3>
+          <div class="mb-1 text-body-secondary">{{blog.timestamp}}</div>
+          <p class="card-text mb-auto">{{blog.content|slice:"0:69"}}...</p>
+          <div>
+            <a href="/blog/{{blog.sno}}/" role="button" class="my-2 icon-link gap-1 icon-link-hover btn btn-outline-dark">
+              Continue reading
+            </a>
+          </div>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+            <img src='https://source.unsplash.com/collection/190647/1600x900' alt="blog#{{forloop.counter}}" class="shadow-lg"  style="width: 230px; height:100%">
+        </div>
+      </div>
+    </div>
+        {% if forloop.counter|divisibleby:2 %}
+            </div>
+            <div class="row mb-2">
+        {% endif %}
+    {% endfor %}
+  </div>
+</div>
+</main>
+{% endblock body %}
